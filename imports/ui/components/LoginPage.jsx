@@ -94,6 +94,11 @@ export default class LoginPage extends Component {
                         placeholder="password"/>
                 </div>
                 <div className="form-group text-center">
+                  <p className="text-left">
+                    <Link to="/forgot_password">Forgot Password?</Link>
+                  </p>
+                </div>
+                <div className="form-group text-center">
                   <input type="submit"
                         id="login-button"
                         className="btn btn-primary btn-lg btn-block"
