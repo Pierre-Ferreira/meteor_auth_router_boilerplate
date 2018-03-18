@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor'
 import React, { Component } from 'react'
 import { withHistory, Link } from 'react-router-dom'
 import { createContainer } from 'meteor/react-meteor-data'
@@ -10,6 +11,29 @@ export default class LoginPage extends Component {
       resendVerificationMessages: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.resendVerificationEmail = this.resendVerificationEmail.bind(this);
+  }
+
+  resendVerificationEmail(e) {
+    // Clear the states.
+    this.setState({
+      error: `Busy...`,
+      resendVerificationMessages: '',
+    });
+    // Retrieve the email.
+    let email = document.getElementById('login-email').value;
+    // Call the method to resend the verification email.
+    Meteor.call('resendVerificationEmail', email, (err, res) => {
+      if (err) {
+        this.setState({
+          error: `${err.reason}`
+        });
+      } else {
+        this.setState({
+          error: 'Verification email has been resent! Please check your email.'
+        });
+      }
+    })
   }
 
   handleSubmit(e){
@@ -18,13 +42,12 @@ export default class LoginPage extends Component {
     let password = document.getElementById('login-password').value;
     Meteor.loginWithPassword(email, password, (err) => {
       if(err){
-        console.log("err: ",err)
         this.setState({
-          error: err.reason
+          error: `${err.reason} `
         });
-        if (err === "email-not-verified") {
+        if (err.error === "email-not-verified") {
           this.setState({
-            resendVerificationMessages: 'Send verification email again?'
+            resendVerificationMessages: 'Resend verification email?'
           });
         } else {
           this.setState({
@@ -39,6 +62,7 @@ export default class LoginPage extends Component {
 
   render(){
     const error = this.state.error;
+    const resendVerificationMessages = this.state.resendVerificationMessages;
     return (
       <div className="modal show">
         <div className="modal-dialog">
@@ -48,7 +72,11 @@ export default class LoginPage extends Component {
             </div>
             <div className="modal-body">
               { error.length > 0 ?
-                <div className="alert alert-danger fade in">{error}</div>
+                <div className="alert alert-danger fade in">{error}
+                  <a onClick={this.resendVerificationEmail}>
+                    {resendVerificationMessages}
+                  </a>
+                </div>
                 :''}
               <form  id="login-form"
                     className="form col-md-12 center-block"

@@ -10,7 +10,6 @@ Accounts.validateLoginAttempt((options) => {
         methodName      (String)    The name of the Meteor method being used to login.
         methodArguments (Array)     An array of the arguments passed to the login method
     */
-// console.log("options:",options)
 
     // Just return true if the user has just been created.
     if (options.methodName === 'createUser') {
@@ -28,7 +27,7 @@ Accounts.validateLoginAttempt((options) => {
     if (options.user && options.user.emails[0] && options.user.emails[0].verified === true) {
         return true;
     } else {
-        throw new Meteor.Error('email-not-verified', 'You must verify your email address before you can log in');
+        throw new Meteor.Error('email-not-verified', 'You must verify your email address before you can log in.');
     }
 
 });
