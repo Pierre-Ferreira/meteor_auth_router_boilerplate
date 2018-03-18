@@ -1,18 +1,19 @@
 import { Meteor } from 'meteor/meteor';
 
-Meteor.startup(() => {
-  // 1. Set up stmp
-  // const username = 'postmaster%40sandbox56ca93bc62b8424ebc907139117a42cb.mailgun.org';
-  // const password = '94d296eb9ab2b8929321ba944d5b06b8';
-  const username = 'postmaster@mg.mathcombat.co.za';
-  const password = '6c35be6478bcf660dbedb5e1c3947247-833f99c3-2850b1d1';
-  const server = 'smtp.mailgun.org';
-  const port = '587';
+// import { settings } from '../settings.json';
 
+
+Meteor.startup(() => {
+
+console.log("usernameP: ",Meteor.settings.private.username);
+console.log("passwordP: ",Meteor.settings.private.password);
+console.log("serverP: ",Meteor.settings.private.server);
+console.log("portP: ",Meteor.settings.private.port);
+  // 1. Set up stmp. NOTE! For security smtps should be used, but it does not work in dev enviroment.
   process.env.MAIL_URL = 'smtp://' +
-      encodeURIComponent(username) + ':' +
-      encodeURIComponent(password) + '@' +
-      encodeURIComponent(server) + ':' + port;
+      encodeURIComponent(Meteor.settings.private.username) + ':' +
+      encodeURIComponent(Meteor.settings.private.password) + '@' +
+      encodeURIComponent(Meteor.settings.private.server) + ':' + Meteor.settings.private.port;
 
   // process.env.MAIL_URL = "smtps://postmaster%40sandbox56ca93bc62b8424ebc907139117a42cb.mailgun.org:94d296eb9ab2b8929321ba944d5b06b8@smtp.mailgun.org:587";
   if (process.env.MAIL_URL) {

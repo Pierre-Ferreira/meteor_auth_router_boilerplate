@@ -6,7 +6,8 @@ export default class LoginPage extends Component {
   constructor(props){
     super(props);
     this.state = {
-      error: ''
+      error: '',
+      resendVerificationMessages: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -17,9 +18,19 @@ export default class LoginPage extends Component {
     let password = document.getElementById('login-password').value;
     Meteor.loginWithPassword(email, password, (err) => {
       if(err){
+        console.log("err: ",err)
         this.setState({
           error: err.reason
         });
+        if (err === "email-not-verified") {
+          this.setState({
+            resendVerificationMessages: 'Send verification email again?'
+          });
+        } else {
+          this.setState({
+            resendVerificationMessages: ''
+          });
+        }
       } else {
         this.props.history.push('/');
       }

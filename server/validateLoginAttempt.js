@@ -10,7 +10,7 @@ Accounts.validateLoginAttempt((options) => {
         methodName      (String)    The name of the Meteor method being used to login.
         methodArguments (Array)     An array of the arguments passed to the login method
     */
-console.log("options:",options)
+// console.log("options:",options)
 
     // Just return true if the user has just been created.
     if (options.methodName === 'createUser') {
