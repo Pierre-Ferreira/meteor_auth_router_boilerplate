@@ -1,43 +1,44 @@
 import React, { Component } from 'react';
-import { withHistory, Link } from 'react-router-dom';
+import { Meteor } from 'meteor/meteor';
+import { Link } from 'react-router-dom';
 import { Accounts } from 'meteor/accounts-base';
-import { AuthFeedbackMessage } from './AuthFeedbackMessage';
+import AuthFeedbackMessage from './AuthFeedbackMessage';
 
 export default class SignupPage extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      feedbackMessage: ''
+      feedbackMessage: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(e){
+  handleSubmit(e) {
     e.preventDefault();
-    let name = document.getElementById("signup-name").value;
-    let email = document.getElementById("signup-email").value;
-    let password = document.getElementById("signup-password").value;
+    const name = document.getElementById('signup-name').value;
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
     this.setState({
-      feedbackMessage: "Busy...",
-      feedbackMessageType: "success",
+      feedbackMessage: 'Busy...',
+      feedbackMessageType: 'success',
     });
-    Accounts.createUser({email: email, username: name, password: password}, (err) => {
-      if(err){
+    Accounts.createUser({ email, username: name, password }, (err) => {
+      if (err) {
         this.setState({
           feedbackMessage: err.reason,
-          feedbackMessageType: "danger",
+          feedbackMessageType: 'danger',
         });
       } else {
-        Meteor.call( 'sendVerificationLink', ( err, response ) => {
-          if ( err ) {
+        Meteor.call('sendVerificationLink', (error) => {
+          if (error) {
             this.setState({
               feedbackMessage: err.reason,
-              feedbackMessageType: "danger",
+              feedbackMessageType: 'danger',
             });
           } else {
             this.setState({
               feedbackMessage: 'Email sent! Please click the verification link!',
-              feedbackMessageType: "success",
+              feedbackMessageType: 'success',
             });
           }
         });
@@ -45,9 +46,8 @@ export default class SignupPage extends Component {
     });
   }
 
-  render(){
-    const feedbackMessage = this.state.feedbackMessage;
-    const feedbackMessageType = this.state.feedbackMessageType;
+  render() {
+    const { feedbackMessage, feedbackMessageType } = this.state;
     return (
       <div className="modal show">
         <div className="modal-dialog">
@@ -60,26 +60,42 @@ export default class SignupPage extends Component {
                 feedbackMessageType={feedbackMessageType}
                 feedbackMessage={feedbackMessage}
               />
-              <form  id="login-form"
-                    className="form col-md-12 center-block"
-                    onSubmit={this.handleSubmit}>
+              <form
+                id="login-form"
+                className="form col-md-12 center-block"
+                onSubmit={this.handleSubmit}
+              >
                 <div className="form-group">
-                  <input type="text" id="signup-name"
-                        className="form-control input-lg" placeholder="name"/>
+                  <input
+                    type="text"
+                    id="signup-name"
+                    className="form-control input-lg"
+                    placeholder="name"
+                  />
                 </div>
                 <div className="form-group">
-                  <input type="email" id="signup-email"
-                        className="form-control input-lg" placeholder="email"/>
+                  <input
+                    type="email"
+                    id="signup-email"
+                    className="form-control input-lg"
+                    placeholder="email"
+                  />
                 </div>
                 <div className="form-group">
-                  <input type="password" id="signup-password"
-                        className="form-control input-lg"
-                        placeholder="password"/>
+                  <input
+                    type="password"
+                    id="signup-password"
+                    className="form-control input-lg"
+                    placeholder="password"
+                  />
                 </div>
                 <div className="form-group">
-                  <input type="submit" id="login-button"
-                        className="btn btn-lg btn-primary btn-block"
-                        value="Sign Up" />
+                  <input
+                    type="submit"
+                    id="login-button"
+                    className="btn btn-lg btn-primary btn-block"
+                    value="Sign Up"
+                  />
                 </div>
                 <div className="form-group">
                   <p className="text-center">
@@ -88,7 +104,7 @@ export default class SignupPage extends Component {
                 </div>
               </form>
             </div>
-            <div className="modal-footer" style={{borderTop: 0}}></div>
+            <div className="modal-footer" style={{ borderTop: 0 }} />
           </div>
         </div>
       </div>

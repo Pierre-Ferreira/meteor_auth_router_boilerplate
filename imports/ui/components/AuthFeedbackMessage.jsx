@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { withHistory, Link } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-export const AuthFeedbackMessage = (props) => {
-  let feedbackMessageType = (props.feedbackMessageType) ? `alert-${props.feedbackMessageType}` : 'alert-danger';
-  let feedbackMessage = props.feedbackMessage || '';
-  let tokenExpiredFlag = props.tokenExpiredFlag || false;
-  let resendVerificationEmailFN = props.resendVerificationEmailFN || '';
-  let resendVerificationMessages = props.resendVerificationMessages || '';
+const AuthFeedbackMessage = (props) => {
+  const feedbackMessageType = (props.feedbackMessageType) ? `alert-${props.feedbackMessageType}` : 'alert-danger';
+  const feedbackMessage = props.feedbackMessage || '';
+  const tokenExpiredFlag = props.tokenExpiredFlag || false;
+  const resendVerificationEmailFN = props.resendVerificationEmailFN || '';
+  const resendVerificationMessages = props.resendVerificationMessages || '';
 
   // Check if a feedback message was set.
   if (feedbackMessage.trim().length !== 0) {
@@ -24,8 +24,10 @@ export const AuthFeedbackMessage = (props) => {
           : ''
         }
       </div>
-    )
+    );
   } else {
-    return ''
+    return '';
   }
-}
+};
+
+export default AuthFeedbackMessage;

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { withHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Accounts } from 'meteor/accounts-base';
-import { AuthFeedbackMessage } from './AuthFeedbackMessage';
+import AuthFeedbackMessage from './AuthFeedbackMessage';
 
 export default class ResetPassword extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       feedbackMessage: '',
@@ -13,38 +13,34 @@ export default class ResetPassword extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(e){
+  handleSubmit(e) {
     e.preventDefault();
     this.setState({
-      feedbackMessage: "Busy...",
+      feedbackMessage: 'Busy...',
       tokenExpiredFlag: false,
     });
-    let password = document.getElementById("signup-password").value;
-    let retypePassword = document.getElementById("retype-signup-password").value;
+    const password = document.getElementById('signup-password').value;
+    const retypePassword = document.getElementById('retype-signup-password').value;
     // Check if a password was set.
-    if (password.trim().length === 0 ) {
+    if (password.trim().length === 0) {
       this.setState({
-        feedbackMessage: "Please enter password!"
+        feedbackMessage: 'Please enter password!',
       });
     // Check if the passwords match.
     } else if (password !== retypePassword) {
       this.setState({
-        feedbackMessage: "Passwords do not match!"
+        feedbackMessage: 'Passwords do not match!',
       });
     } else {
-      console.log(this.props.match.params['token'])
-      const token = this.props.match.params['token']
-      if (password.trim().length === 0 ) {
+      const { token } = this.props.match.params;
+      if (password.trim().length === 0) {
         this.setState({
-          feedbackMessage: "Token for password reset not available!"
+          feedbackMessage: 'Token for password reset not available!',
         });
       } else {
-        console.log('HERE')
-        Accounts.resetPassword(token, retypePassword, (err, res) => {
-          console.log('err:',err)
-          console.log('res:',res)
+        Accounts.resetPassword(token, retypePassword, (err) => {
           if (err) {
-            if (err.reason === "Token expired") {
+            if (err.reason === 'Token expired') {
               this.setState({
                 feedbackMessage: `${err.reason}!`,
                 tokenExpiredFlag: true,
@@ -57,20 +53,18 @@ export default class ResetPassword extends Component {
               });
             }
           } else {
-              this.setState({
-                feedbackMessage: 'Password has been reset. Please login.',
-                feedbackMessageType: 'success',
-              });
+            this.setState({
+              feedbackMessage: 'Password has been reset. Please login.',
+              feedbackMessageType: 'success',
+            });
           }
         });
       }
     }
   }
 
-  render(){
-    const feedbackMessageType = this.state.feedbackMessageType;
-    const feedbackMessage = this.state.feedbackMessage;
-    const tokenExpiredFlag = this.state.tokenExpiredFlag;
+  render() {
+    const { feedbackMessageType, feedbackMessage, tokenExpiredFlag } = this.state;
     return (
       <div className="modal show">
         <div className="modal-dialog">
@@ -84,23 +78,34 @@ export default class ResetPassword extends Component {
                 feedbackMessage={feedbackMessage}
                 tokenExpiredFlag={tokenExpiredFlag}
               />
-              <form  id="login-form"
-                    className="form col-md-12 center-block"
-                    onSubmit={this.handleSubmit}>
+              <form
+                id="login-form"
+                className="form col-md-12 center-block"
+                onSubmit={this.handleSubmit}
+              >
                 <div className="form-group">
-                  <input type="password" id="signup-password"
-                        className="form-control input-lg"
-                        placeholder="password"/>
+                  <input
+                    type="password"
+                    id="signup-password"
+                    className="form-control input-lg"
+                    placeholder="password"
+                  />
                 </div>
                 <div className="form-group">
-                  <input type="password" id="retype-signup-password"
-                        className="form-control input-lg"
-                        placeholder="re-type password"/>
+                  <input
+                    type="password"
+                    id="retype-signup-password"
+                    className="form-control input-lg"
+                    placeholder="re-type password"
+                  />
                 </div>
                 <div className="form-group">
-                  <input type="submit" id="login-button"
-                        className="btn btn-lg btn-primary btn-block"
-                        value="Reset password" />
+                  <input
+                    type="submit"
+                    id="login-button"
+                    className="btn btn-lg btn-primary btn-block"
+                    value="Reset password"
+                  />
                 </div>
                 <div className="form-group">
                   <p className="text-center">
@@ -109,7 +114,7 @@ export default class ResetPassword extends Component {
                 </div>
               </form>
             </div>
-            <div className="modal-footer" style={{borderTop: 0}}></div>
+            <div className="modal-footer" style={{ borderTop: 0 }} />
           </div>
         </div>
       </div>

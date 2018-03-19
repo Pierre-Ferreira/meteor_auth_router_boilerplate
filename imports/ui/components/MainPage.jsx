@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
- import { withHistory, Link } from 'react-router-dom';
- import PropTypes from 'prop-types';
+// import { withHistory, Link } from 'react-router-dom';
+// import PropTypes from 'prop-types';
 
 export default class MainPage extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      username: ''
+      username: '',
     };
   }
 
-  render(){
-    let currentUser = this.props.currentUser;
-    let userDataAvailable = (currentUser !== undefined);
-    let loggedIn = (currentUser && userDataAvailable);
+  render() {
+    const { currentUser } = this.props;
+    const userDataAvailable = (currentUser !== undefined);
+    const loggedIn = (currentUser && userDataAvailable);
     return (
       <div>
         <div className="container">
           <h1 className="text-center">
-            { loggedIn ? 'Welcome '+currentUser.username : '' }
+            { loggedIn ? 'Welcome ' + currentUser.username : '' }
           </h1>
         </div>
       </div>
@@ -28,4 +28,4 @@ export default class MainPage extends Component {
 
 MainPage.propTypes = {
   // username: React.PropTypes.string
-}
+};

@@ -1,42 +1,41 @@
 import React, { Component } from 'react';
-import { withHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Accounts } from 'meteor/accounts-base';
-import { AuthFeedbackMessage } from './AuthFeedbackMessage';
+import AuthFeedbackMessage from './AuthFeedbackMessage';
 
 export default class ResetPassword extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      feedbackMessage: ''
+      feedbackMessage: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(e){
+  handleSubmit(e) {
     e.preventDefault();
-    let email = document.getElementById("signup-email").value;
+    const email = document.getElementById('signup-email').value;
     this.setState({
-      feedbackMessage: "Busy...",
-      feedbackMessageType: "success",
+      feedbackMessage: 'Busy...',
+      feedbackMessageType: 'success',
     });
-    Accounts.forgotPassword({email: email}, (err) => {
-      if(err){
+    Accounts.forgotPassword({ email }, (err) => {
+      if (err) {
         this.setState({
           feedbackMessage: err.reason,
-          feedbackMessageType: "danger",
+          feedbackMessageType: 'danger',
         });
       } else {
-          this.setState({
-            feedbackMessage: 'Email sent! Please click the reset-password link.',
-            feedbackMessageType: "success",
-          });
+        this.setState({
+          feedbackMessage: 'Email sent! Please click the reset-password link.',
+          feedbackMessageType: 'success',
+        });
       }
     });
   }
 
-  render(){
-    const feedbackMessage = this.state.feedbackMessage;
-    const feedbackMessageType = this.state.feedbackMessageType;
+  render() {
+    const { feedbackMessage, feedbackMessageType } = this.state;
     return (
       <div className="modal show">
         <div className="modal-dialog">
@@ -49,16 +48,22 @@ export default class ResetPassword extends Component {
                 feedbackMessageType={feedbackMessageType}
                 feedbackMessage={feedbackMessage}
               />
-              <form  id="login-form"
-                    className="form col-md-12 center-block"
-                    onSubmit={this.handleSubmit}>
+              <form
+                id="login-form"
+                className="form col-md-12 center-block"
+                onSubmit={this.handleSubmit}
+              >
                 {/* <div className="form-group">
                   <input type="text" id="signup-name"
                         className="form-control input-lg" placeholder="name"/>
                 </div> */}
                 <div className="form-group">
-                  <input type="email" id="signup-email"
-                        className="form-control input-lg" placeholder="email"/>
+                  <input
+                    type="email"
+                    id="signup-email"
+                    className="form-control input-lg"
+                    placeholder="email"
+                  />
                 </div>
                 {/* <div className="form-group">
                   <input type="password" id="signup-password"
@@ -66,9 +71,12 @@ export default class ResetPassword extends Component {
                         placeholder="password"/>
                 </div> */}
                 <div className="form-group">
-                  <input type="submit" id="login-button"
-                        className="btn btn-lg btn-primary btn-block"
-                        value="Reset password" />
+                  <input
+                    type="submit"
+                    id="login-button"
+                    className="btn btn-lg btn-primary btn-block"
+                    value="Reset password"
+                  />
                 </div>
                 <div className="form-group">
                   <p className="text-center">
@@ -77,7 +85,7 @@ export default class ResetPassword extends Component {
                 </div>
               </form>
             </div>
-            <div className="modal-footer" style={{borderTop: 0}}></div>
+            <div className="modal-footer" style={{ borderTop: 0 }} />
           </div>
         </div>
       </div>

@@ -1,64 +1,63 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
-import { withHistory, Link } from 'react-router-dom';
-import { createContainer } from 'meteor/react-meteor-data';
-import { AuthFeedbackMessage } from './AuthFeedbackMessage';
+import { Link } from 'react-router-dom';
+import AuthFeedbackMessage from './AuthFeedbackMessage';
 
 
 export default class LoginPage extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       feedbackMessage: '',
-      resendVerificationMessages: ''
+      resendVerificationMessages: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.resendVerificationEmail = this.resendVerificationEmail.bind(this);
   }
 
-  resendVerificationEmail(e) {
+  resendVerificationEmail() {
     // Clear the states.
     this.setState({
-      feedbackMessage: `Busy...`,
+      feedbackMessage: 'Busy...',
       resendVerificationMessages: '',
-      feedbackMessageType: "success",
+      feedbackMessageType: 'success',
     });
     // Retrieve the email.
-    let email = document.getElementById('login-email').value;
+    const email = document.getElementById('login-email').value;
     // Call the method to resend the verification email.
-    Meteor.call('resendVerificationEmail', email, (err, res) => {
+    Meteor.call('resendVerificationEmail', email, (err) => {
       if (err) {
         this.setState({
           feedbackMessage: `${err.reason}`,
-          feedbackMessageType: "danger",
+          feedbackMessageType: 'danger',
         });
       } else {
         this.setState({
           feedbackMessage: 'Verification email has been resent! Please check your email.',
-          feedbackMessageType: "success",
+          feedbackMessageType: 'success',
         });
       }
-    })
+    });
   }
 
-  handleSubmit(e){
+  handleSubmit(e) {
     e.preventDefault();
-    let email = document.getElementById('login-email').value;
-    let password = document.getElementById('login-password').value;
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
     Meteor.loginWithPassword(email, password, (err) => {
       if (err) {
         this.setState({
           feedbackMessage: `${err.reason}`,
-          feedbackMessageType: "danger",
+          feedbackMessageType: 'danger',
         });
-        if (err.error === "email-not-verified") {
+        if (err.error === 'email-not-verified') {
           this.setState({
             resendVerificationMessages: 'Resend verification email?',
-            feedbackMessageType: "warning",
+            feedbackMessageType: 'warning',
           });
         } else {
           this.setState({
-            resendVerificationMessages: ''
+            resendVerificationMessages: '',
           });
         }
       } else {
@@ -67,10 +66,8 @@ export default class LoginPage extends Component {
     });
   }
 
-  render(){
-    const feedbackMessage = this.state.feedbackMessage;
-    const feedbackMessageType = this.state.feedbackMessageType;
-    const resendVerificationMessages = this.state.resendVerificationMessages;
+  render() {
+    const { feedbackMessage, feedbackMessageType, resendVerificationMessages } = this.state;
     return (
       <div className="modal show">
         <div className="modal-dialog">
@@ -85,20 +82,26 @@ export default class LoginPage extends Component {
                 resendVerificationEmailFN={this.resendVerificationEmail}
                 resendVerificationMessages={resendVerificationMessages}
               />
-              <form  id="login-form"
-                    className="form col-md-12 center-block"
-                    onSubmit={this.handleSubmit}>
+              <form
+                id="login-form"
+                className="form col-md-12 center-block"
+                onSubmit={this.handleSubmit}
+              >
                 <div className="form-group">
-                  <input type="email"
-                        id="login-email"
-                        className="form-control input-lg"
-                        placeholder="email"/>
+                  <input
+                    type="email"
+                    id="login-email"
+                    className="form-control input-lg"
+                    placeholder="email"
+                  />
                 </div>
                 <div className="form-group">
-                  <input type="password"
-                        id="login-password"
-                        className="form-control input-lg"
-                        placeholder="password"/>
+                  <input
+                    type="password"
+                    id="login-password"
+                    className="form-control input-lg"
+                    placeholder="password"
+                  />
                 </div>
                 <div className="form-group text-center">
                   <p className="text-left">
@@ -106,10 +109,12 @@ export default class LoginPage extends Component {
                   </p>
                 </div>
                 <div className="form-group text-center">
-                  <input type="submit"
-                        id="login-button"
-                        className="btn btn-primary btn-lg btn-block"
-                        value="Login" />
+                  <input
+                    type="submit"
+                    id="login-button"
+                    className="btn btn-primary btn-lg btn-block"
+                    value="Login"
+                  />
                 </div>
                 <div className="form-group text-center">
                   <p className="text-center">
@@ -118,7 +123,7 @@ export default class LoginPage extends Component {
                 </div>
               </form>
             </div>
-            <div className="modal-footer" style={{borderTop: 0}}></div>
+            <div className="modal-footer" style={{ borderTop: 0 }} />
           </div>
         </div>
       </div>
