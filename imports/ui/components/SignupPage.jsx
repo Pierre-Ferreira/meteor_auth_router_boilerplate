@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
- import { withHistory, Link } from 'react-router-dom';
- import { Accounts } from 'meteor/accounts-base';
+import { withHistory, Link } from 'react-router-dom';
+import { Accounts } from 'meteor/accounts-base';
+import { AuthFeedbackMessage } from './AuthFeedbackMessage';
 
 export default class SignupPage extends Component {
   constructor(props){
     super(props);
     this.state = {
-      error: ''
+      feedbackMessage: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -16,31 +17,37 @@ export default class SignupPage extends Component {
     let name = document.getElementById("signup-name").value;
     let email = document.getElementById("signup-email").value;
     let password = document.getElementById("signup-password").value;
-    this.setState({error: "Besig..."});
+    this.setState({
+      feedbackMessage: "Busy...",
+      feedbackMessageType: "success",
+    });
     Accounts.createUser({email: email, username: name, password: password}, (err) => {
       if(err){
         this.setState({
-          error: err.reason
+          feedbackMessage: err.reason,
+          feedbackMessageType: "danger",
         });
       } else {
         Meteor.call( 'sendVerificationLink', ( err, response ) => {
           if ( err ) {
             this.setState({
-              error: err.reason
+              feedbackMessage: err.reason,
+              feedbackMessageType: "danger",
             });
           } else {
             this.setState({
-              error: 'Kyk asb na die email wat ons gestuur het en click die verification link!'
+              feedbackMessage: 'Email sent! Please click the verification link!',
+              feedbackMessageType: "success",
             });
           }
         });
-        // this.props.history.push('/login');
       }
     });
   }
 
   render(){
-    const error = this.state.error;
+    const feedbackMessage = this.state.feedbackMessage;
+    const feedbackMessageType = this.state.feedbackMessageType;
     return (
       <div className="modal show">
         <div className="modal-dialog">
@@ -49,9 +56,10 @@ export default class SignupPage extends Component {
               <h1 className="text-center">Sign up</h1>
             </div>
             <div className="modal-body">
-              { error.length > 0 ?
-                <div className="alert alert-danger fade in">{error}</div>
-                :''}
+              <AuthFeedbackMessage
+                feedbackMessageType={feedbackMessageType}
+                feedbackMessage={feedbackMessage}
+              />
               <form  id="login-form"
                     className="form col-md-12 center-block"
                     onSubmit={this.handleSubmit}>

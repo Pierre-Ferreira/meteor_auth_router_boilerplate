@@ -1,13 +1,15 @@
-import { Meteor } from 'meteor/meteor'
-import React, { Component } from 'react'
-import { withHistory, Link } from 'react-router-dom'
-import { createContainer } from 'meteor/react-meteor-data'
+import { Meteor } from 'meteor/meteor';
+import React, { Component } from 'react';
+import { withHistory, Link } from 'react-router-dom';
+import { createContainer } from 'meteor/react-meteor-data';
+import { AuthFeedbackMessage } from './AuthFeedbackMessage';
+
 
 export default class LoginPage extends Component {
   constructor(props){
     super(props);
     this.state = {
-      error: '',
+      feedbackMessage: '',
       resendVerificationMessages: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,8 +19,9 @@ export default class LoginPage extends Component {
   resendVerificationEmail(e) {
     // Clear the states.
     this.setState({
-      error: `Busy...`,
+      feedbackMessage: `Busy...`,
       resendVerificationMessages: '',
+      feedbackMessageType: "success",
     });
     // Retrieve the email.
     let email = document.getElementById('login-email').value;
@@ -26,11 +29,13 @@ export default class LoginPage extends Component {
     Meteor.call('resendVerificationEmail', email, (err, res) => {
       if (err) {
         this.setState({
-          error: `${err.reason}`
+          feedbackMessage: `${err.reason}`,
+          feedbackMessageType: "danger",
         });
       } else {
         this.setState({
-          error: 'Verification email has been resent! Please check your email.'
+          feedbackMessage: 'Verification email has been resent! Please check your email.',
+          feedbackMessageType: "success",
         });
       }
     })
@@ -41,13 +46,15 @@ export default class LoginPage extends Component {
     let email = document.getElementById('login-email').value;
     let password = document.getElementById('login-password').value;
     Meteor.loginWithPassword(email, password, (err) => {
-      if(err){
+      if (err) {
         this.setState({
-          error: `${err.reason} `
+          feedbackMessage: `${err.reason}`,
+          feedbackMessageType: "danger",
         });
         if (err.error === "email-not-verified") {
           this.setState({
-            resendVerificationMessages: 'Resend verification email?'
+            resendVerificationMessages: 'Resend verification email?',
+            feedbackMessageType: "warning",
           });
         } else {
           this.setState({
@@ -61,7 +68,8 @@ export default class LoginPage extends Component {
   }
 
   render(){
-    const error = this.state.error;
+    const feedbackMessage = this.state.feedbackMessage;
+    const feedbackMessageType = this.state.feedbackMessageType;
     const resendVerificationMessages = this.state.resendVerificationMessages;
     return (
       <div className="modal show">
@@ -71,13 +79,12 @@ export default class LoginPage extends Component {
               <h1 className="text-center">Login</h1>
             </div>
             <div className="modal-body">
-              { error.length > 0 ?
-                <div className="alert alert-danger fade in">{error}
-                  <a onClick={this.resendVerificationEmail}>
-                    {resendVerificationMessages}
-                  </a>
-                </div>
-                :''}
+              <AuthFeedbackMessage
+                feedbackMessageType={feedbackMessageType}
+                feedbackMessage={feedbackMessage}
+                resendVerificationEmailFN={this.resendVerificationEmail}
+                resendVerificationMessages={resendVerificationMessages}
+              />
               <form  id="login-form"
                     className="form col-md-12 center-block"
                     onSubmit={this.handleSubmit}>
