@@ -1,42 +1,42 @@
 import React, { Component } from 'react';
-import { withHistory } from 'react-router-dom';
-import MainContainer from './MainContainer.jsx';
+import { Meteor } from 'meteor/meteor';
+import MainContainer from './MainContainer';
 
 export default class AppContainer extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = this.getMeteorData();
     this.logout = this.logout.bind(this);
   }
 
-  getMeteorData(){
+  componentWillMount() {
+    if (!this.state.isAuthenticated) {
+      this.props.history.push('/login');
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (!this.state.isAuthenticated) {
+      this.props.history.push('/login');
+    }
+  }
+
+  getMeteorData() {
     return { isAuthenticated: Meteor.userId() !== null };
   }
 
-  componentWillMount(){
-    if (!this.state.isAuthenticated) {
-      this.props.history.push('/login');
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState){
-    if (!this.state.isAuthenticated) {
-      this.props.history.push('/login');
-    }
-  }
-
-  logout(e){
+  logout(e) {
     e.preventDefault();
-    Meteor.logout( (err) => {
-        if (err) {
-            console.log( err.reason );
-        } else {
-            this.props.history.push('/login');
-        }
+    Meteor.logout((err) => {
+      if (err) {
+        console.log( err.reason );
+      } else {
+        this.props.history.push('/login');
+      }
     });
   }
 
-  render(){
+  render() {
     return (
       <div>
         <nav className="navbar navbar-default navbar-static-top">

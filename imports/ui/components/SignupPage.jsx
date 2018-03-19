@@ -32,7 +32,7 @@ export default class SignupPage extends Component {
         Meteor.call('sendVerificationLink', (error) => {
           if (error) {
             this.setState({
-              feedbackMessage: err.reason,
+              feedbackMessage: error.reason,
               feedbackMessageType: 'danger',
             });
           } else {
