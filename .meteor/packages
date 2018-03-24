@@ -23,3 +23,4 @@ accounts-password
 react-meteor-data
 twbs:bootstrap
 email
+aldeed:collection2@3.0.0

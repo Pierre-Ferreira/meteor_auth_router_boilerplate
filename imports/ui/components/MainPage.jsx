@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import SchoolsPage from '../../ui/components/SchoolsPage';
 // import { withHistory, Link } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
@@ -20,6 +22,11 @@ export default class MainPage extends Component {
           <h1 className="text-center">
             { loggedIn ? 'Welcome ' + currentUser.username : '' }
           </h1>
+          <Router>
+            <div>
+              <Route path="/act/schools_edit" component={SchoolsPage} />
+            </div>
+          </Router>
         </div>
       </div>
     );

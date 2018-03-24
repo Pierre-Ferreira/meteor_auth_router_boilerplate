@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
+import { Link } from 'react-router-dom';
 import MainContainer from './MainContainer';
 
 export default class AppContainer extends Component {
@@ -42,10 +43,13 @@ export default class AppContainer extends Component {
         <nav className="navbar navbar-default navbar-static-top">
           <div className="container">
             <div className="navbar-header">
-              <a className="navbar-brand" href="#">Auth App</a>
+              <a className="navbar-brand" href="#">MathCombat.com App</a>
             </div>
             <div className="navbar-collapse">
               <ul className="nav navbar-nav navbar-right">
+                <li>
+                  <Link to="/act/schools_edit">Schools</Link>
+                </li>
                 <li>
                   <a href="#" onClick={this.logout}>Logout</a>
                 </li>

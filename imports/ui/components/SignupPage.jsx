@@ -15,14 +15,23 @@ export default class SignupPage extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const name = document.getElementById('signup-name').value;
+    const firstName = document.getElementById('signup-firstname').value;
+    const lastName = document.getElementById('signup-surname').value;
     const email = document.getElementById('signup-email').value;
     const password = document.getElementById('signup-password').value;
     this.setState({
       feedbackMessage: 'Busy...',
       feedbackMessageType: 'success',
     });
-    Accounts.createUser({ email, username: name, password }, (err) => {
+    const profile = {
+      firstName,
+      lastName,
+      tester1: 'NOTHING!',
+    };
+    const FEEDBACK = Meteor.users.simpleSchema().namedContext().validate({ emails: email, password, profile});
+    //.validate({ emails: email, password, profile}, {modifier: false});
+    console.log('FEEDBACK:',FEEDBACK)
+    Accounts.createUser({ email, password, profile }, (err) => {
       if (err) {
         this.setState({
           feedbackMessage: err.reason,
@@ -54,6 +63,7 @@ export default class SignupPage extends Component {
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="text-center">Sign up</h1>
+              <h4 className="text-center">Kids can be added in backoffice.</h4>
             </div>
             <div className="modal-body">
               <AuthFeedbackMessage
@@ -68,9 +78,17 @@ export default class SignupPage extends Component {
                 <div className="form-group">
                   <input
                     type="text"
-                    id="signup-name"
+                    id="signup-firstname"
                     className="form-control input-lg"
-                    placeholder="name"
+                    placeholder="parent name"
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    id="signup-surname"
+                    className="form-control input-lg"
+                    placeholder="parent surname"
                   />
                 </div>
                 <div className="form-group">
