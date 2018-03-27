@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import SchoolsPage from '../../ui/components/SchoolsPage';
+// import TablesMainComp from './components/TablesModule/TablesMainComp';
+// import SumsMainComp from './components/SumsModule/SumsMainComp';
+// components
+import SignupPage from './SignupPage';
+import LoginPage from './LoginPage';
+import ResetPassword from './ResetPassword';
+import ForgotPassword from './ForgotPassword';
 // import { withHistory, Link } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
@@ -22,11 +29,18 @@ export default class MainPage extends Component {
           <h1 className="text-center">
             { loggedIn ? 'Welcome ' + currentUser.username : '' }
           </h1>
-          <Router>
-            <div>
-              <Route path="/act/schools_edit" component={SchoolsPage} />
-            </div>
-          </Router>
+          <div>
+            {/* <Grid> */}
+              <Switch>
+                <Route path="/act/schools_edit" component={SchoolsPage} />
+                <Route path="/login" component={LoginPage} />
+                <Route path="/signup" component={SignupPage} />
+                <Route path="/forgot_password" component={ForgotPassword} />
+                <Route path="/reset-password/:token" component={ResetPassword} />
+                {/* <Route exact path="/" component={AppContainer} /> */}
+              </Switch>
+            {/* </Grid> */}
+          </div>
         </div>
       </div>
     );

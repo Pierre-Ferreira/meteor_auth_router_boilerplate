@@ -26,7 +26,7 @@ const AuthFeedbackMessage = (props) => {
       </div>
     );
   } else {
-    return '';
+    return null;
   }
 };
 

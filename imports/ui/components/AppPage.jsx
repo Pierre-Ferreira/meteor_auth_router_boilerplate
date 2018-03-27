@@ -1,24 +1,36 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
-import MainContainer from './MainContainer';
+import NavBarContainer from '../containers/NavBar/NavBarContainer';
+import MainContainer from '../containers/MainContainer';
 
 export default class AppContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = this.getMeteorData();
+    // this.state = { isAuthenticated: isLoggedIn() };
     this.logout = this.logout.bind(this);
   }
 
   componentWillMount() {
-    if (!this.state.isAuthenticated) {
-      this.props.history.push('/login');
+
+console.log('componentWillMount:', this.props.isAuthenticated);
+    if (!this.props.isAuthenticated) {
+      this.props.toLoginPage();
     }
+// console.log('isAuthenticatedM:',this.state.isAuthenticated);
+//     if (!this.state.isAuthenticated) {
+//       this.props.toLoginPage();
+//     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (!this.state.isAuthenticated) {
-      this.props.history.push('/login');
+// console.log('isAuthenticatedU:',this.state.isAuthenticated);
+//     if (!this.state.isAuthenticated) {
+//       this.props.toLoginPage();
+//     }
+console.log('componentDidUpdate:',this.props.isAuthenticated);
+    if (!this.props.isAuthenticated) {
+      this.props.toLoginPage();
     }
   }
 
@@ -32,7 +44,7 @@ export default class AppContainer extends Component {
       if (err) {
         console.log( err.reason );
       } else {
-        this.props.history.push('/login');
+        this.props.toLoginPage();
       }
     });
   }
@@ -40,7 +52,7 @@ export default class AppContainer extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-default navbar-static-top">
+        {/* <nav className="navbar navbar-default navbar-static-top">
           <div className="container">
             <div className="navbar-header">
               <a className="navbar-brand" href="#">MathCombat.com App</a>
@@ -56,7 +68,8 @@ export default class AppContainer extends Component {
               </ul>
             </div>
           </div>
-        </nav>
+        </nav> */}
+        <NavBarContainer />
         <MainContainer />
       </div>
     );
