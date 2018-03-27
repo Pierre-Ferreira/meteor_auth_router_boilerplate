@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux-meteor';
 import { push } from 'react-router-redux';
-import AppPage from '../components/AppPage';
+import AppComp from '../components/AppComp';
 
 const mapTrackerToProps = (state, props) => {
   // if (Meteor.subscribe('posts').ready()) {
@@ -37,4 +37,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapTrackerToProps, mapStateToProps, mapDispatchToProps)(AppPage);
+export default connect(mapTrackerToProps, mapStateToProps, mapDispatchToProps)(AppComp);

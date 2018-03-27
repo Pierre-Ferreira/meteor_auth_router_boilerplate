@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
-import NavBarContainer from '../containers/NavBar/NavBarContainer';
+import NavBarContainer from '../containers/Navbar/NavBarContainer';
 import MainContainer from '../containers/MainContainer';
 
-export default class AppContainer extends Component {
+export default class AppComp extends Component {
   constructor(props) {
     super(props);
     // this.state = { isAuthenticated: isLoggedIn() };

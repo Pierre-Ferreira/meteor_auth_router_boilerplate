@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux-meteor';
 import { push } from 'react-router-redux';
-import NavBarComp from '../../components/NavBar/NavBarComp';
+import NavbarComp from '../../components/Navbar/NavbarComp';
 
 const mapTrackerToProps = (state, props) => {
   return {isAuthenticated: Meteor.userId() !== null}
@@ -18,4 +18,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapTrackerToProps, mapStateToProps, mapDispatchToProps)(NavBarComp);
+export default connect(mapTrackerToProps,mapStateToProps, mapDispatchToProps)(NavbarComp);

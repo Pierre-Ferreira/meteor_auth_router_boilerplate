@@ -14,9 +14,9 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
-import './NavbarComp.css';
+// import './NavbarComp.css';
 
-export default class NavBarComp extends Component {
+export default class NavbarComp extends Component {
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
@@ -37,6 +37,9 @@ export default class NavBarComp extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink href="/schools_edit">Schools</NavLink>
+              </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Modules
