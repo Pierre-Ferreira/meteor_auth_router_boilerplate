@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import AuthFeedbackMessageComp from './AuthFeedbackMessageComp';
 
 
-export default class LoginPage extends Component {
+export default class LoginComp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -61,7 +61,7 @@ export default class LoginPage extends Component {
           });
         }
       } else {
-        this.props.history.push('/');
+        this.props.history.push('/main/welcome');
       }
     });
   }
@@ -105,7 +105,7 @@ export default class LoginPage extends Component {
                 </div>
                 <div className="form-group text-center">
                   <p className="text-left">
-                    <Link to="/forgot_password">Forgot Password?</Link>
+                    <Link to="/auth/forgot_password">Forgot Password?</Link>
                   </p>
                 </div>
                 <div className="form-group text-center">
@@ -118,7 +118,7 @@ export default class LoginPage extends Component {
                 </div>
                 <div className="form-group text-center">
                   <p className="text-center">
-                    Don't have an account? Register <Link to="/signup">here</Link>
+                    Don't have an account? Register <Link to="/auth/signup">here</Link>
                   </p>
                 </div>
               </form>

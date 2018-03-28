@@ -8,7 +8,12 @@ const mapTrackerToProps = (state, props) => {
   //   return { posts: Posts.find().fetch() };
   // }
   // return { posts: [] };
-  return {isAuthenticated: Meteor.userId() !== null}
+  const loggingIn = Meteor.loggingIn();
+  return {
+    loggingIn,
+    authenticated: !loggingIn && !!Meteor.userId(),
+  };
+  // return {isAuthenticated: Meteor.userId() !== null}
 };
 
 function mapStateToProps(state) {

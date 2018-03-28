@@ -36,7 +36,6 @@ const store = createStore(
 
 Meteor.startup(() => {
   ReactDOM.render(
-
     <Provider store={store}>
       { /* ConnectedRouter will use the store from Provider automatically */ }
       <ConnectedRouter history={history}>

@@ -28,9 +28,9 @@ export default class SignupPage extends Component {
       lastName,
       tester1: 'NOTHING!',
     };
-    const FEEDBACK = Meteor.users.simpleSchema().namedContext().validate({ emails: email, password, profile});
-    //.validate({ emails: email, password, profile}, {modifier: false});
-    console.log('FEEDBACK:',FEEDBACK)
+    // const FEEDBACK = Meteor.users.simpleSchema().namedContext().validate({ emails: email, password, profile});
+    // //.validate({ emails: email, password, profile}, {modifier: false});
+    // console.log('FEEDBACK:',FEEDBACK)
     Accounts.createUser({ email, password, profile }, (err) => {
       if (err) {
         this.setState({

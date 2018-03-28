@@ -1,13 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux-meteor';
 import { push } from 'react-router-redux';
-import NavbarComp from '../../components/Navbar/NavbarComp';
+import WelcomeComp from '../../components/Main/WelcomeComp';
 
 const mapTrackerToProps = (state, props) => {
-  const loggingIn = Meteor.loggingIn();
   return {
-    loggingIn,
-    authenticated: !loggingIn && !!Meteor.userId(),
     currentUser: Meteor.user(),
   };
 };
@@ -23,4 +20,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapTrackerToProps,mapStateToProps, mapDispatchToProps)(NavbarComp);
+export default connect(mapTrackerToProps,mapStateToProps, mapDispatchToProps)(WelcomeComp);
