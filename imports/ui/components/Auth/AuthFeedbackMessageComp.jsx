@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const AuthFeedbackMessage = (props) => {
+const AuthFeedbackMessageComp = (props) => {
   const feedbackMessageType = (props.feedbackMessageType) ? `alert-${props.feedbackMessageType}` : 'alert-danger';
   const feedbackMessage = props.feedbackMessage || '';
   const tokenExpiredFlag = props.tokenExpiredFlag || false;
@@ -30,4 +30,4 @@ const AuthFeedbackMessage = (props) => {
   }
 };
 
-export default AuthFeedbackMessage;
+export default AuthFeedbackMessageComp;

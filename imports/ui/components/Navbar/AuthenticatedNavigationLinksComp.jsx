@@ -51,7 +51,7 @@ const AuthenticatedNavigationLinksComp = () => (
       </DropdownMenu>
     </UncontrolledDropdown>
     <NavItem>
-      <NavLink href="/auth/login" onClick={logout()}>Logout</NavLink>
+      <NavLink to="/auth/login" onClick={logout}>Logout</NavLink>
     </NavItem>
   </Nav>
 );

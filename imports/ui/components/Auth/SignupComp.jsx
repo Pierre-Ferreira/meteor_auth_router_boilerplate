@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Accounts } from 'meteor/accounts-base';
 import AuthFeedbackMessageComp from './AuthFeedbackMessageComp';
 
-export default class SignupPage extends Component {
+export default class SignupComp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -58,14 +58,14 @@ export default class SignupPage extends Component {
   render() {
     const { feedbackMessage, feedbackMessageType } = this.state;
     return (
-      <div className="modal show">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
+      <div className="">
+        <div className="">
+          <div className="">
+            <div className="">
               <h1 className="text-center">Sign up</h1>
               <h4 className="text-center">Kids can be added in backoffice.</h4>
             </div>
-            <div className="modal-body">
+            <div className="">
               <AuthFeedbackMessageComp
                 feedbackMessageType={feedbackMessageType}
                 feedbackMessage={feedbackMessage}
@@ -117,12 +117,12 @@ export default class SignupPage extends Component {
                 </div>
                 <div className="form-group">
                   <p className="text-center">
-                    Already have an account? Login <Link to="/login">here</Link>
+                    Already have an account? Login <Link to="/auth/login">here</Link>
                   </p>
                 </div>
               </form>
             </div>
-            <div className="modal-footer" style={{ borderTop: 0 }} />
+            <div className="" style={{ borderTop: 0 }} />
           </div>
         </div>
       </div>

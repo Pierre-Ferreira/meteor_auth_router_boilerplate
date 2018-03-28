@@ -7,8 +7,8 @@ import {
   NavbarToggler,
   NavbarBrand,
 } from 'reactstrap';
-import AuthenticatedNavigationLinksComp from './AuthenticatedNavigationLinksComp';
-import PublicNavigationLinks from './PublicNavigationLink';
+import AuthenticatedNavigationLinksContainer from '../../containers/Navbar/AuthenticatedNavigationLinksContainer';
+import PublicNavigationLinksContainer from '../../containers/Navbar/PublicNavigationLinksContainer';
 // import './NavbarComp.css';
 
 export default class NavbarComp extends Component {
@@ -27,7 +27,10 @@ export default class NavbarComp extends Component {
 
   render() {
     const renderNavigationLinks = authenticated =>
-      (authenticated ? <AuthenticatedNavigationLinksComp /> : <PublicNavigationLinks />);
+      (authenticated ?
+        <AuthenticatedNavigationLinksContainer /> :
+        <PublicNavigationLinksContainer />
+      );
     return (
       <div>
         <Navbar color="faded" className="navbar-dark bg-dark" light expand="md">
