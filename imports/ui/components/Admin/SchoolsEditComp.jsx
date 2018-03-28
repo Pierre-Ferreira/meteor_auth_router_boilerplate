@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
-import Schools from '../../api/schools';
+import Schools from '../../../api/schools';
 
 export default class SchoolsPage extends Component {
   constructor(props) {

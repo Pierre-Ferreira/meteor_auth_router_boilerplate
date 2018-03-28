@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Accounts } from 'meteor/accounts-base';
-import AuthFeedbackMessage from './AuthFeedbackMessage';
+import AuthFeedbackMessageComp from './AuthFeedbackMessageComp';
 
 export default class ResetPassword extends Component {
   constructor(props) {
@@ -73,7 +73,7 @@ export default class ResetPassword extends Component {
               <h1 className="text-center">Reset Password</h1>
             </div>
             <div className="modal-body">
-              <AuthFeedbackMessage
+              <AuthFeedbackMessageComp
                 feedbackMessageType={feedbackMessageType}
                 feedbackMessage={feedbackMessage}
                 tokenExpiredFlag={tokenExpiredFlag}

@@ -1,14 +1,17 @@
 import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux-meteor';
 import { push } from 'react-router-redux';
-import AppComp from '../components/AppComp';
+import MainPage from '../../components/Layout/MainComp';
 
 const mapTrackerToProps = (state, props) => {
   // if (Meteor.subscribe('posts').ready()) {
   //   return { posts: Posts.find().fetch() };
   // }
   // return { posts: [] };
-  return {isAuthenticated: Meteor.userId() !== null}
+  return {
+    currentUser: Meteor.user(),
+    isAuthenticated: Meteor.userId() !== null,
+  };
 };
 
 function mapStateToProps(state) {
@@ -33,8 +36,19 @@ function mapDispatchToProps(dispatch) {
     // saveGameScore: (numberOfCorrect, percentageCorrect) => dispatch({ type: 'SAVE_GAME_SCORE', numberOfCorrect, percentageCorrect }),
     // startGame: () => dispatch({ type: 'START_GAME' }),
     // endGame: () => dispatch({ type: 'END_GAME' }),
-    toLoginPage: () => dispatch(push('/login')),
+    toLoginPage: () => dispatch(push('/auth/login')),
   };
 }
 
-export default connect(mapTrackerToProps, mapStateToProps, mapDispatchToProps)(AppComp);
+export default connect(mapTrackerToProps, mapStateToProps, mapDispatchToProps)(MainPage);
+
+
+// import { createContainer } from 'meteor/react-meteor-data';
+// import MainPage from '../components/MainPage';
+//
+// export default MainContainer = createContainer(({ params }) => {
+//   const currentUser = Meteor.user();
+//   return {
+//     currentUser,
+//   };
+// }, MainPage);

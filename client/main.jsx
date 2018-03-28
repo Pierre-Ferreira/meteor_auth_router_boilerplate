@@ -8,7 +8,7 @@ import createHistory from 'history/createBrowserHistory';
 import 'bootstrap/dist/css/bootstrap.css';
 import reducers from '../imports/reducers';
 // import './index.css';
-import AppContainer from '../imports/ui/containers/AppContainer';
+import AppContainer from '../imports/ui/containers/Layout/AppContainer';
 import registerServiceWorker from './registerServiceWorker';
 
 

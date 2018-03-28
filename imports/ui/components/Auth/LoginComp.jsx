@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import AuthFeedbackMessage from './AuthFeedbackMessage';
+import AuthFeedbackMessageComp from './AuthFeedbackMessageComp';
 
 
 export default class LoginPage extends Component {
@@ -76,7 +76,7 @@ export default class LoginPage extends Component {
               <h1 className="text-center">Login</h1>
             </div>
             <div className="modal-body">
-              <AuthFeedbackMessage
+              <AuthFeedbackMessageComp
                 feedbackMessageType={feedbackMessageType}
                 feedbackMessage={feedbackMessage}
                 resendVerificationEmailFN={this.resendVerificationEmail}

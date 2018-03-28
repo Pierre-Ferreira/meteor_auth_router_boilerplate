@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
 import { Accounts } from 'meteor/accounts-base';
-import AuthFeedbackMessage from './AuthFeedbackMessage';
+import AuthFeedbackMessageComp from './AuthFeedbackMessageComp';
 
 export default class SignupPage extends Component {
   constructor(props) {
@@ -66,7 +66,7 @@ export default class SignupPage extends Component {
               <h4 className="text-center">Kids can be added in backoffice.</h4>
             </div>
             <div className="modal-body">
-              <AuthFeedbackMessage
+              <AuthFeedbackMessageComp
                 feedbackMessageType={feedbackMessageType}
                 feedbackMessage={feedbackMessage}
               />

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Link } from 'react-router-dom';
-import NavBarContainer from '../containers/Navbar/NavBarContainer';
-import MainContainer from '../containers/MainContainer';
+import NavBarContainer from '../../containers/Navbar/NavbarContainer';
+import MainContainer from '../../containers/Layout/MainContainer';
 
 export default class AppComp extends Component {
   constructor(props) {

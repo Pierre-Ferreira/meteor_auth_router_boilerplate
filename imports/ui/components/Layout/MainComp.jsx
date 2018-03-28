@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import SchoolsPage from '../../ui/components/SchoolsPage';
+import { Route, Switch } from 'react-router-dom';
+import SchoolsEditComp from '../Admin/SchoolsEditComp';
 // import TablesMainComp from './components/TablesModule/TablesMainComp';
 // import SumsMainComp from './components/SumsModule/SumsMainComp';
 // components
-import SignupPage from './SignupPage';
-import LoginPage from './LoginPage';
-import ResetPassword from './ResetPassword';
-import ForgotPassword from './ForgotPassword';
+import SignupComp from '../Auth/SignupComp';
+import LoginComp from '../Auth/LoginComp';
+import ResetPasswordComp from '../Auth/ResetPasswordComp';
+import ForgotPasswordComp from '../Auth/ForgotPasswordComp';
 // import { withHistory, Link } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
@@ -32,11 +32,11 @@ export default class MainPage extends Component {
           <div>
             {/* <Grid> */}
               <Switch>
-                <Route path="/act/schools_edit" component={SchoolsPage} />
-                <Route path="/login" component={LoginPage} />
-                <Route path="/signup" component={SignupPage} />
-                <Route path="/forgot_password" component={ForgotPassword} />
-                <Route path="/reset-password/:token" component={ResetPassword} />
+                <Route path="/admin/schools_edit" component={SchoolsEditComp} />
+                <Route path="/auth/login" component={LoginComp} />
+                <Route path="/auth/signup" component={SignupComp} />
+                <Route path="/auth/forgot_password" component={ForgotPasswordComp} />
+                <Route path="/auth/reset-password/:token" component={ResetPasswordComp} />
                 {/* <Route exact path="/" component={AppContainer} /> */}
               </Switch>
             {/* </Grid> */}
