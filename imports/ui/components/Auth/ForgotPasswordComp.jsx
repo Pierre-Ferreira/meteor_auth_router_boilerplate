@@ -80,7 +80,7 @@ export default class ResetPassword extends Component {
                 </div>
                 <div className="form-group">
                   <p className="text-center">
-                    <Link to="/login">Login</Link>
+                    <Link to="/auth/login">Login</Link>
                   </p>
                 </div>
               </form>

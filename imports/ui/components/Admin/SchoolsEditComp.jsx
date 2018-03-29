@@ -39,13 +39,11 @@ export default class SchoolsPage extends Component {
   render() {
     const { feedbackMessage, feedbackMessageType } = this.state;
     return (
-      <div className="modal show">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
+          <div className="schools-edit-content">
+            <div className="schools-edit-header">
               <h1 className="text-center">Schools Page</h1>
             </div>
-            <div className="modal-body">
+            <div className="schools-edit-body">
               <form
                 id="schools-form"
                 className="form col-md-12 center-block"
@@ -115,10 +113,8 @@ export default class SchoolsPage extends Component {
                 </div> */}
               </form>
             </div>
-            <div className="modal-footer" style={{ borderTop: 0 }} />
+            <div className="schools-edit-footer" style={{ borderTop: 0 }} />
           </div>
-        </div>
-      </div>
     );
   }
 }

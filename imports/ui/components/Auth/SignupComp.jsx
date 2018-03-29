@@ -117,7 +117,7 @@ export default class SignupComp extends Component {
                 </div>
                 <div className="form-group">
                   <p className="text-center">
-                    Already have an account? Login <Link to="/login">here</Link>
+                    Already have an account? Login <Link to="/auth/login">here</Link>
                   </p>
                 </div>
               </form>

@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux-meteor';
 import { push } from 'react-router-redux';
+import { withRouter } from 'react-router-dom';
 import MainPage from '../../components/Layout/MainComp';
 
 const mapTrackerToProps = (state, props) => {
@@ -46,7 +47,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapTrackerToProps, mapStateToProps, mapDispatchToProps)(MainPage);
+export default withRouter(connect(mapTrackerToProps, mapStateToProps, mapDispatchToProps)(MainPage));
 
 
 // import { createContainer } from 'meteor/react-meteor-data';

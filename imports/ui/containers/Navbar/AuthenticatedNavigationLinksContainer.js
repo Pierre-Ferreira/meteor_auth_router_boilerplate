@@ -19,7 +19,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    toLoginPage: () => dispatch(push('/login')),
+    toHomepage: () => dispatch(push('/')),
   };
 }
 

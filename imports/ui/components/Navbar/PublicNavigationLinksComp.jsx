@@ -11,7 +11,7 @@ const PublicNavigationLinksComp = () => (
       <NavLink to="/auth/login" activeClassName="active">Login</NavLink>
     </NavItem>
     <NavItem>
-      <NavLink to="/auth/login" activeClassName="active">signup</NavLink>
+      <NavLink to="/auth/signup" activeClassName="active">signup</NavLink>
     </NavItem>
   </Nav>
 );
