@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux-meteor';
 import { push } from 'react-router-redux';
-import WelcomeComp from '../../components/Main/WelcomeComp';
+import SignupComp from '../../components/Auth/SignupComp';
 
 const mapTrackerToProps = (state, props) => {
   const loggingIn = Meteor.loggingIn();
@@ -19,8 +19,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    toLoginPage: () => dispatch(push('/login')),
   };
 }
 
-export default connect(mapTrackerToProps, mapStateToProps, mapDispatchToProps)(WelcomeComp);
+export default connect(mapTrackerToProps, mapStateToProps, mapDispatchToProps)(SignupComp);
