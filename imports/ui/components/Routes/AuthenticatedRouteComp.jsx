@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 const AuthenticatedRouteComp = ({
@@ -18,10 +18,10 @@ const AuthenticatedRouteComp = ({
   />
 );
 
-AuthenticatedRouteComp.propTypes = {
-  loggingIn: PropTypes.bool,
-  authenticated: PropTypes.bool,
-  component: PropTypes.func,
-};
+// AuthenticatedRouteComp.propTypes = {
+//   loggingIn: PropTypes.bool,
+//   authenticated: PropTypes.bool,
+//   component: PropTypes.func,
+// };
 
 export default AuthenticatedRouteComp;

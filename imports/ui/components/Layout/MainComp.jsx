@@ -5,7 +5,7 @@ import SchoolsEditComp from '../Admin/SchoolsEditComp';
 // import TablesMainComp from './components/TablesModule/TablesMainComp';
 // import SumsMainComp from './components/SumsModule/SumsMainComp';
 // components
-import WelcomeComp from '../../containers/Main/WelcomeComp';
+import WelcomeComp from '../../containers/Main/WelcomeContainer';
 import SignupComp from '../Auth/SignupComp';
 import LoginComp from '../Auth/LoginComp';
 import ResetPasswordComp from '../Auth/ResetPasswordComp';
@@ -41,7 +41,7 @@ export default class MainPage extends Component {
     );
   }
 }
-
-MainPage.propTypes = {
-  // username: React.PropTypes.string
-};
+// 
+// MainPage.propTypes = {
+//   // username: React.PropTypes.string
+// };

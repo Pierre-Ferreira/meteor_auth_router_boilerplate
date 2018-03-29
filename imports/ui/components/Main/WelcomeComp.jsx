@@ -1,18 +1,26 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
-const WelcomeComp = ({ props }) => {
+const WelcomeComp = (props) => {
   const { currentUser } = props;
-  // const userDataAvailable = (currentUser !== undefined);
-  // const loggedIn = (currentUser && userDataAvailable);
+  let userFirstName = '';
+  let userLastName = '';
+  if (currentUser && currentUser.profile && currentUser.profile.firstName) {
+    userFirstName = currentUser.profile.firstName;
+  }
+  if (currentUser && currentUser.profile && currentUser.profile.lastName) {
+    userLastName = currentUser.profile.lastName;
+  }
+  console.log('currentUser:',currentUser);
   return (
     <h1 className="text-center">
-      Welcome {currentUser.username}
+      Welcome {userFirstName} {userLastName}
+      YO!!
     </h1>
   );
 };
 
-WelcomeComp.propTypes = {
-  currentUser: PropTypes.bool,
-};
+// WelcomeComp.propTypes = {
+//
+// };
 
 export default WelcomeComp;

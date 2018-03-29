@@ -58,14 +58,14 @@ export default class SignupComp extends Component {
   render() {
     const { feedbackMessage, feedbackMessageType } = this.state;
     return (
-      <div className="">
-        <div className="">
-          <div className="">
-            <div className="">
+      <div className="modal show">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
               <h1 className="text-center">Sign up</h1>
               <h4 className="text-center">Kids can be added in backoffice.</h4>
             </div>
-            <div className="">
+            <div className="modal-body">
               <AuthFeedbackMessageComp
                 feedbackMessageType={feedbackMessageType}
                 feedbackMessage={feedbackMessage}
@@ -117,12 +117,12 @@ export default class SignupComp extends Component {
                 </div>
                 <div className="form-group">
                   <p className="text-center">
-                    Already have an account? Login <Link to="/auth/login">here</Link>
+                    Already have an account? Login <Link to="/login">here</Link>
                   </p>
                 </div>
               </form>
             </div>
-            <div className="" style={{ borderTop: 0 }} />
+            <div className="modal-footer" style={{ borderTop: 0 }} />
           </div>
         </div>
       </div>

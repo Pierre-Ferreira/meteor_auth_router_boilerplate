@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 const PublicRouteComp = ({
@@ -18,10 +18,10 @@ const PublicRouteComp = ({
   />
 );
 
-PublicRouteComp.propTypes = {
-  loggingIn: PropTypes.bool,
-  authenticated: PropTypes.bool,
-  component: PropTypes.func,
-};
+// PublicRouteComp.propTypes = {
+//   loggingIn: PropTypes.bool,
+//   authenticated: PropTypes.bool,
+//   component: PropTypes.func,
+// };
 
 export default PublicRouteComp;

@@ -23,4 +23,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapTrackerToProps,mapStateToProps, mapDispatchToProps)(NavbarComp);
+export default connect(mapTrackerToProps, mapStateToProps, mapDispatchToProps)(NavbarComp);

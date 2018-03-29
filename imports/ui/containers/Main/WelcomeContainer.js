@@ -20,4 +20,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapTrackerToProps,mapStateToProps, mapDispatchToProps)(WelcomeComp);
+export default connect(mapTrackerToProps, mapStateToProps, mapDispatchToProps)(WelcomeComp);
